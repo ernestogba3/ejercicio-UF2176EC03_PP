@@ -28,6 +28,24 @@ const getAlumnosCursos = async (req, res) => {      //Ejercicio 4
     }
 };
 
+const getTotalMatriculas = async (req,res) =>{ // Ejercicio 6
+    try {
+        const resultado = await Matricula.findTotalCurso();
+        res.json(resultado.rows);
+    } catch (error) {
+        res.status(500).json({mensaje:error.message});
+    }
+};
+
+const getTotalAlumnos = async (req,res) =>{ // Ejercicio 7
+    try {
+        const resultado = await Matricula.findTotalAlumnos();
+        res.json(resultado.rows);
+    } catch (error) {
+        res.status(500).json({mensaje:error.message});
+    }
+};
+
 
 const updateMatricula = async (req, res) => {
     try {
@@ -56,5 +74,7 @@ module.exports = {
     createMatricula,
     updateMatricula,
     deleteMatricula,
+    getTotalMatriculas,
+    getTotalAlumnos
     
 };

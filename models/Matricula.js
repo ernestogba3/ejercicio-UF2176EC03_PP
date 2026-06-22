@@ -29,6 +29,29 @@ const Matricula = {
             JOIN alumnos a ON m.alumno_id = a.alumno_id;`
         ),
 
+    findTotalCurso: () => // Ejercicio 6
+        pool.query(
+            `
+            SELECT c.nombre AS curso,COUNT(m.alumno_id) AS total_alumnos
+            FROM matriculas m
+            JOIN curso c ON m.curso_id = c.curso_id
+            GROUP BY c.nombre;
+            `
+        ),
+
+    findTotalAlumnos: () => // Ejercicio 7s
+        pool.query(
+        `
+        SELECT c.nombre AS curso, COUNT(m.alumno_id) AS total_matriculas
+        FROM matriculas m
+        JOIN curso c ON m.curso_id = c.curso_id
+        GROUP BY c.nombre
+        HAVING COUNT(m.alumno_id) >= 1;
+        `  
+        ),
+
+    
+
     update: (id, alumno_id, curso_id, fecha_matricula) =>
         pool.query(
             `UPDATE matriculas SET alumno_id = $1, curso_id = $2, fecha_matricula = $3 WHERE matricula_id = $4 RETURNING *`,
