@@ -22,6 +22,13 @@ const Matricula = {
             [alumno_id, curso_id, fecha_matricula]
         ),
 
+    findAlumnoCurso: () => //Ejercicio 4
+        pool.query(`
+            SELECT m.fecha_matricula,a.nombre AS alumno,c.nombre AS curso
+            FROM matriculas m JOIN curso c ON m.curso_id = c.curso_id
+            JOIN alumnos a ON m.alumno_id = a.alumno_id;`
+        ),
+
     update: (id, alumno_id, curso_id, fecha_matricula) =>
         pool.query(
             `UPDATE matriculas SET alumno_id = $1, curso_id = $2, fecha_matricula = $3 WHERE matricula_id = $4 RETURNING *`,

@@ -19,6 +19,16 @@ const createMatricula = async (req, res) => {
     }
 };
 
+const getAlumnosCursos = async (req, res) => {      //Ejercicio 4
+    try {
+        const resultado = await Matricula.findAlumnoCurso();
+        res.json(resultado.rows);
+    } catch (error) {
+        res.status(500).json({ mensaje: error.message });
+    }
+};
+
+
 const updateMatricula = async (req, res) => {
     try {
         const { id } = req.params;
@@ -42,7 +52,9 @@ const deleteMatricula = async (req, res) => {
 
 module.exports = {
     getMatriculas,
+    getAlumnosCursos,
     createMatricula,
     updateMatricula,
     deleteMatricula,
+    
 };
