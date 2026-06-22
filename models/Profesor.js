@@ -27,6 +27,15 @@ const Profesor = {
             [min,max])
         },
 
+        getEspecialidad:() =>{ // Ejercicio 5
+            return pool.query(
+                `
+                SELECT c.nombre AS CURSO, p.nombre AS PROFESOR, e.nombre AS ESPECIALIDAD
+                FROM curso c JOIN profesores p ON c.profesor_id= p.profesor_id
+                JOIN especialidad e ON e.especialidad_id = p.especialidad_id;
+                `)
+        },
+
     create: (nombre, edad, especialidad_id) =>
         pool.query(
             `INSERT INTO profesores (nombre, edad, especialidad_id)

@@ -29,6 +29,17 @@ const getEdad = async (req, res) => { //Ejercicio 1
     }
 };
 
+const getEspecialidad = async (req,res) =>{ //Ejercicio 5
+    try {
+        const resultado = await Profesor.getEspecialidad();
+        res.json(resultado.rows);
+        
+    } catch (error) {
+    res.status(500).json({ mensaje: error.message });
+    }
+
+}
+
 const getRango = async (req, res) => { //Ejercicio 2
     try {
         const { min,max } = req.query;
@@ -77,5 +88,6 @@ module.exports = {
     updateProfesor,
     deleteProfesor,
     getEdad,
-    getRango,   
+    getRango,
+    getEspecialidad
 };
