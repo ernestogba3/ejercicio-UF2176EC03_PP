@@ -21,6 +21,12 @@ const Profesor = {
             [edad]
         ),
 
+        findByRango:(min,max) =>{
+           return pool.query(
+                "SELECT * FROM profesores WHERE edad >= $1 AND edad <= $2",
+            [min,max])
+        },
+
     create: (nombre, edad, especialidad_id) =>
         pool.query(
             `INSERT INTO profesores (nombre, edad, especialidad_id)
