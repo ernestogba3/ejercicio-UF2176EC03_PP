@@ -30,6 +30,16 @@ const updateCurso = async (req, res) => {
     }
 };
 
+const getTopMatriculados = async (req, res) => {    //Ejercicio 3
+    try {
+        const resultado = await Curso.findTopMatriculados();
+        res.json(resultado.rows);
+    } catch (error) {
+        res.status(500).json({ mensaje: error.message });
+    }
+};
+
+
 const deleteCurso = async (req, res) => {
     try {
         const { id } = req.params;
@@ -45,4 +55,5 @@ module.exports = {
     createCurso,
     updateCurso,
     deleteCurso,
+    getTopMatriculados
 };

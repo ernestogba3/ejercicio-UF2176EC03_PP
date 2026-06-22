@@ -4,6 +4,7 @@ const {
     getProfesor,
     getEdad,
     getRango,
+    findTopMatriculados,
  
 } = require("../controllers/profesoresController");
 const authMiddleware = require("../controllers/middlewares/authMiddleware");

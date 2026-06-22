@@ -77,6 +77,5 @@ module.exports = {
     updateProfesor,
     deleteProfesor,
     getEdad,
-    getRango
-   
+    getRango,   
 };

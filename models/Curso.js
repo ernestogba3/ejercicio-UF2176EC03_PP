@@ -14,6 +14,22 @@ const Curso = {
             [nombre, horas, profesor_id]
         ),
 
+   findTopMatriculados: () => //Ejercicio 3
+        pool.query(`
+            SELECT c.*
+            FROM curso c
+            JOIN matriculas m ON m.curso_id = c.curso_id
+            GROUP BY c.curso_id
+            HAVING COUNT(m.matricula_id) = (
+                SELECT MAX(total)
+                FROM (
+                    SELECT COUNT(*) AS total
+                    FROM matriculas
+                    GROUP BY curso_id
+                ) AS subconsulta
+            );
+        `), 
+
     update: (id, nombre, horas, profesor_id) =>
         pool.query(
             `UPDATE curso SET nombre = $1, horas = $2, profesor_id = $3 WHERE curso_id = $4 RETURNING *`,
